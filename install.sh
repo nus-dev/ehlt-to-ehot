@@ -18,7 +18,7 @@ fi
 PY="$HERE/.venv/bin/python"
 
 # 2) 로컬 폰트로 패치 폰트 생성 (추가 옵션은 build_fonts.py로 그대로 전달)
-#    예: ./install.sh --only 됬,떄   |   ./install.sh --groups 되다,때
+#    예: ./install.sh --only 됬,떄   |   ./install.sh --exclude 읆
 echo "• 패치 폰트 생성(로컬 시스템 폰트 기반)"
 "$PY" "$HERE/build_fonts.py" "$OUT" "$@"
 
