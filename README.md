@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="docs/logo.png" alt="ehlt-to-ehot (됐)" width="420">
+</p>
+
 # ehlt-to-ehot — Slack 한글 오타 교정 (됬→됐 등)
 
 Slack 데스크톱에서 잘못된 한글 표기를 올바르게 보이게 한다.
