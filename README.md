@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="docs/logo.png" alt="ehlt-to-ehot (됐)" width="420">
+  <img src="docs/logo.png" alt="ehlt-to-ehot (됐)" width="640">
 </p>
 <p align="center"><sub>로고는 Google Gemini로 생성한 이미지입니다.</sub></p>
 
