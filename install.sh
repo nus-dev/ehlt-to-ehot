@@ -28,11 +28,19 @@ for d in "$HOME/Library/Fonts" "/Library/Fonts" "/System/Library/Fonts"; do
   ls "$d"/[Cc]onsola*.ttf "$d"/[Cc]onsola*.ttc >/dev/null 2>&1 && REAL_CONSOLAS="$d"
 done
 
-# 4) 설치
+# 4) 설치 (복사 후, 설치된 파일이 멀쩡히 열리는지 재검증)
 echo "• ~/Library/Fonts 로 설치"
 mkdir -p "$FONTDIR"
 cp "$OUT"/*.ttc "$FONTDIR"/ 2>/dev/null || true
-ls "$FONTDIR" | grep -iE "DwaetFix|Consolas-Korean" || true
+for ttc in "$OUT"/*.ttc; do
+  name="$(basename "$ttc")"
+  "$PY" - "$FONTDIR/$name" <<'PY' || { echo "  ✗ 설치된 $name 손상 — 중단"; exit 1; }
+import sys
+from fontTools.ttLib import TTCollection
+TTCollection(sys.argv[1]).fonts[0].getBestCmap()
+PY
+  echo "  ✓ $name"
+done
 
 cat <<'GUIDE'
 

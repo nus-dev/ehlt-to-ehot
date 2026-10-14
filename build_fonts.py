@@ -91,6 +91,23 @@ def rename(font, family):
             rec.string = f"{family}-{sub}".replace(" ", "").encode(enc)
 
 
+def verify(path, ascii_stripped):
+    """저장된 폰트를 다시 열어 손상/누락이 없는지 확인한다. 실패하면 예외.
+
+    생성이 중단되거나 잘못돼 손상된(truncated) 폰트가 설치되는 사고를 막는다.
+    """
+    coll = TTCollection(path)  # 손상 시 여기서 예외
+    cm = coll.fonts[0].getBestCmap()
+    if cm.get(0xAC00) is None:  # '가' — 한글 글리프가 살아있어야
+        raise RuntimeError(f"{path}: 한글 글리프 없음 (손상 의심)")
+    if PAIRS:  # 교정 쌍 샘플 1개가 실제로 적용됐는지
+        bad, good = PAIRS[0]
+        if cm.get(bad) != cm.get(good):
+            raise RuntimeError(f"{path}: 교정 미적용 (U+{bad:04X})")
+    if ascii_stripped and 0x41 in cm:  # ASCII가 제거됐어야
+        raise RuntimeError(f"{path}: ASCII 미제거")
+
+
 def build_from_ttc(src, family, out, ascii_strip=False):
     coll = TTCollection(src)
     for f in coll.fonts:
@@ -99,6 +116,7 @@ def build_from_ttc(src, family, out, ascii_strip=False):
             strip_ascii(f)
         rename(f, family)
     coll.save(out)
+    verify(out, ascii_strip)  # 설치 전 검증 (손상 폰트 설치 방지)
     print(f"  [OK] {family}  →  {out}")
 
 
