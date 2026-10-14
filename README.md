@@ -3,6 +3,10 @@
 </p>
 <p align="center"><sub>로고는 Google Gemini로 생성한 이미지입니다.</sub></p>
 
+<p align="center">
+  <img src="docs/demo.gif" alt="데모: Slack에서 됬→됐 교정" width="560">
+</p>
+
 # ehlt-to-ehot — 한글 오타 교정 폰트 패처 (macOS)
 
 자주 틀리는 한글 음절(`됬`, `떄`, `꺠` …)을 **올바른 글자로 그려주는 폰트**를 만들어 설치한다.
