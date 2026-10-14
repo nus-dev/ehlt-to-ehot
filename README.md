@@ -1,13 +1,16 @@
-# dwaet-fixer — Slack 한글 오타 교정 (됬→됐, 떄→때)
+# ehlt-to-ehot — Slack 한글 오타 교정 (됬→됐 등)
 
 Slack 데스크톱에서 잘못된 한글 표기를 올바르게 보이게 한다.
 **앱 수정·재서명·SIP 변경 없음.** 폰트 파일을 재배포하지 않아 저작권 문제도 없다.
 
+> 이름 `ehlt-to-ehot`은 `됬→됐`을 영문 키보드로 친 키스트로크(ehlt→ehot)다.
+
 > 이 문서는 사람과 **AI 에이전트** 모두를 위한 것이다. 에이전트는 아래 명령을 그대로
 > 실행하면 되고, `/slackfont` 입력(2단계)만 사용자에게 안내한다(입력창 명령이라 대신 못 침).
 
-- `됬`(U+B42C) → `됐`(U+B410)
-- `떄`(U+B584) → `때`(U+B54C)
+교정 대상은 자주 틀리는 한글 음절들(되다/뵈다/했/겠/겹받침/깨·때·빼·째·께·떼 계열 등)이다.
+전체 목록과 추가 방법은 `build_fonts.py`의 `CHAR_REPLACEMENTS`를 참고. 예:
+- `됬` → `됐`,  `떄` → `때`,  `꺠` → `깨`,  `뺐`…
 
 ## 원리
 Slack 데스크톱은 Electron(Chromium)이고 본문 텍스트는 CSS `font-family`로 그려진다.
@@ -64,9 +67,9 @@ cp dist-fonts/*.ttc ~/Library/Fonts/
 | `Apple SD Gothic Neo DwaetFix` | Slack 일반 텍스트 | AppleSDGothicNeo.ttc | 모양 동일, 오타만 교정 |
 | `Consolas` (한글 전용) | Slack 코드블록 | AppleSDGothicNeo.ttc | ASCII 제거→영문은 Monaco |
 
-## 교정 쌍 추가
-`build_fonts.py`의 `PAIRS`에 `(잘못, 올바름)` 코드포인트 한 줄 추가 후 재설치.
-코드포인트 확인: `python3 -c "print(hex(ord('글자')))"`.
+## 교정 쌍 추가/수정
+`build_fonts.py`의 `CHAR_REPLACEMENTS`에 `"잘못": "올바름"` 한 줄 추가 후 재설치.
+(각 글자는 완성형 1음절이어야 한다.) 재설치 후 Slack을 Cmd+Q로 재시작.
 
 ## 한계
 - Slack **데스크톱 앱** 전용. 네이티브 알림 토스트(창 밖 배너)는 시스템 폰트라 제외.
