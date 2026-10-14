@@ -1,2 +1,4 @@
 .venv/
 dist-fonts/
+__pycache__/
+*.pyc
