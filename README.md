@@ -67,8 +67,22 @@ cp dist-fonts/*.ttc ~/Library/Fonts/
 | `Apple SD Gothic Neo DwaetFix` | Slack 일반 텍스트 | AppleSDGothicNeo.ttc | 모양 동일, 오타만 교정 |
 | `Consolas` (한글 전용) | Slack 코드블록 | AppleSDGothicNeo.ttc | ASCII 제거→영문은 Monaco |
 
+## 원하는 글자만 선택 (커스텀)
+기본은 전체(52개)지만, 원하는 글자/그룹만 골라 생성할 수 있다. 옵션은 `install.sh`가
+`build_fonts.py`로 그대로 전달한다.
+
+```
+./install.sh --list              # 그룹/글자 목록 보기
+./install.sh --only 됬,떄         # 이 글자들만 (쉼표/공백/붙여쓰기: 됬떄 도 가능)
+./install.sh --groups 되다,때      # 이 그룹들만
+./install.sh --exclude 읆         # 전체에서 이 글자만 빼고
+```
+
+그룹: `되다 뵈다 했겠 겹받침 깨 때 빼 째 께 떼`.
+(`build_fonts.py`만 단독 실행할 때도 같은 옵션을 쓴다: `python3 build_fonts.py --only 됬`.)
+
 ## 교정 쌍 추가/수정
-`build_fonts.py`의 `CHAR_REPLACEMENTS`에 `"잘못": "올바름"` 한 줄 추가 후 재설치.
+`build_fonts.py`의 `GROUPS`에 `"잘못": "올바름"` 한 줄 추가 후 재설치.
 (각 글자는 완성형 1음절이어야 한다.) 재설치 후 Slack을 Cmd+Q로 재시작.
 
 ## 한계

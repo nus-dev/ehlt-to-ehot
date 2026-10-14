@@ -17,9 +17,10 @@ if [ ! -x "$HERE/.venv/bin/python" ]; then
 fi
 PY="$HERE/.venv/bin/python"
 
-# 2) 로컬 폰트로 패치 폰트 생성
+# 2) 로컬 폰트로 패치 폰트 생성 (추가 옵션은 build_fonts.py로 그대로 전달)
+#    예: ./install.sh --only 됬,떄   |   ./install.sh --groups 되다,때
 echo "• 패치 폰트 생성(로컬 시스템 폰트 기반)"
-"$PY" "$HERE/build_fonts.py" "$OUT"
+"$PY" "$HERE/build_fonts.py" "$OUT" "$@"
 
 # 3) Consolas 충돌 감지 (MS Office 등으로 진짜 Consolas가 있으면 코드블록 트릭 영향)
 REAL_CONSOLAS=""
