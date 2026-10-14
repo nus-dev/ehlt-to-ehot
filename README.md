@@ -1,6 +1,7 @@
 <p align="center">
   <img src="docs/logo.png" alt="ehlt-to-ehot (됐)" width="420">
 </p>
+<p align="center"><sub>로고는 Google Gemini로 생성한 이미지입니다.</sub></p>
 
 # ehlt-to-ehot — 한글 오타 교정 폰트 패처 (macOS)
 
@@ -77,5 +78,14 @@ rm ~/Library/Fonts/AppleSDGothicNeo-DwaetFix.ttc ~/Library/Fonts/Consolas-Korean
 build_fonts.py   로컬 폰트 → 패치 폰트 2종 생성 (fonttools), 선택 옵션 포함
 install.sh       생성 + 설치 + 안내 (옵션을 build_fonts.py로 전달)
 docs/logo.png    로고
-README.md        이 문서 (사람 + 에이전트 공용)
+README.md        이 문서
+LICENSE          MIT + 고지
 ```
+
+## 라이선스·고지
+- **코드**: MIT ([LICENSE](./LICENSE) 참고).
+- **폰트**: 이 저장소는 폰트 파일을 배포하지 않는다. 도구는 사용자 Mac에 설치된 폰트를
+  로컬에서 수정·설치할 뿐이며, 원본 폰트(Apple SD Gothic Neo 등)는 각자의 라이선스를 따른다.
+- **"Consolas"**: Microsoft의 상표. 여기서는 코드 폰트 스택을 가로채기 위한 **로컬 폰트
+  이름**으로만 쓰며, Microsoft 폰트를 배포하거나 제휴를 의미하지 않는다.
+- **로고**: Google Gemini로 생성한 이미지.
